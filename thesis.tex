@@ -1,0 +1,171 @@
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Template for MSU Thesis
+% Mathialakan Thavappiragasam
+% January 6, 2020
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\documentclass[reqno,12pt,oneside]{report}
+\usepackage{rac}
+\usepackage{aas_macros}  
+\usepackage[intlimits]{amsmath}
+\usepackage{algorithm}
+\usepackage{algorithmic}
+\usepackage{amsxtra}     
+\usepackage{amsthm}
+\usepackage{amssymb}
+\usepackage{amsfonts}
+\usepackage{graphicx}   
+\usepackage{rotating}
+\usepackage{color}
+\usepackage{epsfig}
+\usepackage{subfigure}   
+\usepackage{verbatim}
+\usepackage{natbib}      
+\usepackage[printonlyused]{acronym} 
+\usepackage{setspace}   
+\usepackage[titles, subfigure]{tocloft}
+\doublespacing 
+\newcommand{\sun}{\ensuremath{\odot}} 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}
+\newtheorem{prop}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{question}[theorem]{Question}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{assumption}[theorem]{Assumption}
+
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\newtheorem{notation}[theorem]{Notation}
+\newtheorem{condition}[theorem]{Condition}
+\newtheorem{example}[theorem]{Example}
+\newtheorem{introduction}[theorem]{Introduction}
+
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\setcitestyle{numbers}
+\setcitestyle{square}
+\numberwithin{theorem}{chapter}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\makeatletter
+\def\cleardoublepage{\clearpage\if@twoside \ifodd\c@page\else
+\hbox{}
+\thispagestyle{empty}
+\newpage
+\if@twocolumn\hbox{}\newpage\fi\fi\fi}
+\makeatother 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\newcommand{\todo}[1]{\vspace{5 mm}\par \noindent
+\marginpar{\textsc{To Do}}
+\framebox{\begin{minipage}[c]{0.95 \textwidth}
+\tt\begin{center} #1 \end{center}\end{minipage}}\vspace{5 mm}\par}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+\bibliographystyle{agu04}   
+
+% Title page as required 
+\titlepage{Title of the Thesis}{Name goes here}
+{Department}{Doctor of Philosophy}{Year}
+
+% use this for dual PhD
+%\titlepage{Title of the Thesis}{Name goes here}
+%{Department}{Doctor of Philosophy}
+%{Dual Major Department}{Year}
+
+% Abstract
+\startabstractpage
+{Title of the Thesis}{Name goes here}
+\input{Abstract/Abstract}
+\label{Abstract}
+This is an abstract ...
+
+% Copyright page
+\copyrightpage{Name goes here}{Year}
+
+\initializefrontsections
+
+\makeatletter
+\if@twoside \setcounter{page}{4} \else \setcounter{page}{4} \fi
+\makeatother
+
+% Dedication page
+\dedicationpage{this is the dedication}
+
+% Acknowledgements page
+\startacknowledgementspage
+\input{Intro/Acknowledgements}
+\label{Acknowledgements}
+
+% Table of contents
+\tableofcontents     
+
+\renewcommand\cfttabaftersnum{:}
+\renewcommand\cfttabpresnum{Table~}
+\cftsetindents{tab}{0em}{5em}
+
+\makeatletter
+\begingroup
+  \let\newcounter\@gobble
+  \let\setcounter\@gobbletwo
+  \globaldefs\@ne
+  \let\c@loadepth\@ne
+  \newlistof{algorithms}{loa}{\listalgorithmname}
+\endgroup
+\let\l@algorithm\l@algorithms
+\makeatother
+
+\renewcommand\cftalgorithmsaftersnum{}
+\renewcommand\cftalgorithmspresnum{Algorithm~}
+\cftsetindents{algorithms}{0em}{7em}
+
+% list of tables
+\listoftables     
+
+\newlength\myfiglength
+\renewcommand\cftfigpresnum{\figurename~}
+\renewcommand\cftfigaftersnum{:}
+\settowidth\myfiglength{\cftfigpresnum\cftfigaftersnum}
+\addtolength\cftfignumwidth{\myfiglength}
+\setlength{\cftfigindent}{0in}
+
+% list of figures
+\listoffigures      
+
+% list of algorithms
+%\listofalgms    
+
+\startthechapters 
+
+% include chapters
+ \chapter{Chapter 1}
+ \label{chap:Intro}
+ \input{Intro/Intro}
+
+ \chapter{Chapter 2 }
+ \label{chap:chpater2}
+ \input{Chap2/chap2}
+ 
+ \chapter{Chapter 3}
+ \label{chap:chpater3}
+ \input{Chap3/chap3}
+
+%\startappendices
+ %\appendix{This is an appendix}
+ %\label{app:app_1}
+ %\input{Appendices/Appendix_1}
+ 
+\startbibliography
+ \begin{singlespace} 
+  \bibliography{References}   % Use the BibTeX file ``References.bib''.
+ \end{singlespace}
+
+\end{document}
